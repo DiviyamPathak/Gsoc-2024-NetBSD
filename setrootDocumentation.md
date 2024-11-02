@@ -20,9 +20,9 @@ flowchart TD
       
     L -->|root_device == NULL| M{Wait timeout?}  
     M -->|No| N[Sleep 1 sec]  
-    M -->|Yes| O[Set RB_ASKNAME]  
+    M -->|Yes| I
     N --> L  
-    O --> J  
+    
       
     K --> P[Configure root_device]  
     L -->|root_device found| P  
