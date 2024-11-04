@@ -86,7 +86,7 @@ it also has different cases for different device type [Christoph badura's docume
   * `dumpdev`: Device number for dump device  
   * `dumpcdev`: Character device for dumps  
   * `root_device`: Device structure for root device  
-  * `booted_device`: Device we booted from   
+  * `booted_device`: Device through which system booted. Obtained through BIOS entries
   * `rootspec`: Specification for root device from config file   
   * `bootspec`: Boot device specification  
 5. **Special Handling**:    
