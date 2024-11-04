@@ -1,4 +1,4 @@
-#Gsoc 2024 NetBSD 
+# Gsoc 2024 NetBSD 
 ## Project Test root device and root file system selection
 ### Project Details 
 In NetBSD's later stage of bootup, Kernel finds device with root filesystem. this search is assisted with the help of config file of kernel.
