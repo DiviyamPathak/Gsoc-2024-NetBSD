@@ -6,7 +6,8 @@ flowchart TD
     B -->|No| D{TFTPROOT defined?}  
       
     D -->|Yes| E[tftproot_dhcpboot]  
-    E -->|Success| F[setroot_md]  
+    E -->|Success| C[setroot_md]
+    C --> G  
     D -->|No| G[setroot_nfs]  
     E -->|Failure| G  
       
@@ -166,11 +167,11 @@ The `tftproot_dhcpboot` function:
 
 ```mermaid
 flowchart TD
-    A[Start] --> B[Root Device Selection]
-    B --> C{Display default boot device?}
+    A[Start] 
+    A --> C{bootdv!= NULL}
     C -->|Yes| D[Show default bootdv]
     C -->|No| E[Prompt user for root device]
-
+    D --> E	
     E --> F{User input for root device}
     F -->|No input| G[Set to bootdv]
     F -->|Wildcard input| H[Search matching devices]
