@@ -167,8 +167,9 @@ The `tftproot_dhcpboot` function:
 
 ```mermaid
 flowchart TD
-    A[Start] 
-    A --> C{bootdv!= NULL}
+    A[Start]
+    A --> B{Input loop} 
+    B --> C{bootdv!= NULL}
     C -->|Yes| D[Show default bootdv]
     C -->|No| E[Prompt user for root device]
     D --> E	
@@ -178,7 +179,10 @@ flowchart TD
     F -->|Valid input| I[Set rootdv and exit loop]
     H --> I
 
-    I --> J[Set rootdev to nrootdev]
+    I --> ZA{Breaks input loop}
+    G --> ZA
+    ZA --> |No| B			
+    ZA -->|Yes| J[Set rootdev to nrootdev]
 
     J --> K[Default Dump Device Setup]
     K --> L{Root device supports partitions?}
@@ -188,7 +192,7 @@ flowchart TD
     M --> O[Dump Device Selection]
     N --> O
     O --> P{User input for dump device}
-    P -->|No input| Q{Is defdumpdv available?}
+    P -->|empty input| Q{Is defdumpdv available?}
     Q -->|Yes| R[Set dumpdv to second partition of rootdv]
     R --> S[Set dumpdev to ndumpdev identifier]
     Q -->|No| T[Skip setting dump device]
@@ -198,7 +202,7 @@ flowchart TD
 
     S --> U[Filesystem Type Selection]
     U --> V{User input for filesystem}
-    V -->|No input| W[Set rootfstype to default deffsname]
+    V -->|empty input| W[Set rootfstype to default deffsname]
     V -->|Command input halt reboot ddb| X[Execute command]
     V -->|Filesystem not valid| Y[List available filesystems]
     Y --> V
