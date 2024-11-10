@@ -8,10 +8,23 @@ Functions we need to test are setroot , it utilizes number of other functions fo
 ### Code Details
 here is my tree for project [/src](https://github.com/DiviyamPathak/src/tree/gsoc-setroot-nb10)
 
-[Test Cases for setroot_root](https://github.com/DiviyamPathak/src/commit/8c8bddfacf986a31f2ab812fc250f454437bbff6)
+This function handles wildcard entry in config file else handles specified device [Test Cases for setroot_root](https://github.com/DiviyamPathak/src/commit/8c8bddfacf986a31f2ab812fc250f454437bbff6)
 
-[Test Cases for tftproot_dhcpboot](https://github.com/DiviyamPathak/src/commit/b85d451366436fc3e0647972b484daa38e268d6c)
+this function handles network booting[Test Cases for tftproot_dhcpboot](https://github.com/DiviyamPathak/src/commit/b85d451366436fc3e0647972b484daa38e268d6c)
+
+currently they are these functions run in userspace hence calls mocked functions while running, we intend to move them to use rumpkernel. we will use vnd(8) for setting up neccessary 
+enviroment for running without mocking internal functions. 
+Global Varibles are set outside of kernel space manually.
+
 
 ### Documentation 
 Here is Documentation for all functions in kern_subr.c 
 [Docs](./setrootDocumentation.md)
+
+it covers main setroot() and following
+  - setroot_root()
+  - setroot_ask()
+  - tftproot_dhcpboot()
+  - setroot_md() 
+these functions perform root device and fs selection operation. they cover a wide range of scenarios.
+there are also global variables, I will cal them intermediatries between config and kern_subr.c.  
