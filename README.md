@@ -4,6 +4,16 @@
 In NetBSD's later stage of bootup, Kernel finds device with root filesystem. this search is assisted with the help of config file of kernel.
 NetBSD has Testing suite called ATF (Automated testing framework) But this suite does not cover this area of function. We attempt to write test for root device and filesystem selection.
 Functions we need to test are setroot , it utilizes number of other functions for different scenarios which are documented in my [documentation]() . we will use vnd to use device simulation in userspace. 
+### Project Goals
+our goals could be divided into 2 parts 
+1. Documentation
+2. Writting ATF Tests
+
+we had to document config file's constructs for device specifications and types. Functionality and control flow of root device and file system selection. We also had to take note of all the edge cases for which we could make test cases. There are number of global variables that interact with setroot inorder for a final root_device variable to be set. We had to document them and point at which it would change to produce specific scenarios. 
+Finally We have to write ATF based Unit tests for all cases using rump kernels.
+
+### curent state and future forward
+We have to move the Tests so that it uses rump kernel and also rewrite/refactor part of kern_subr.c for code quality. 
 
 ### Code Details
 here is my tree for project [/src](https://github.com/DiviyamPathak/src/tree/gsoc-setroot-nb10)
