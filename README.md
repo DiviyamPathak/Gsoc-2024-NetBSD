@@ -28,8 +28,11 @@ Global Varibles are set outside of kernel space manually.
 
 As part of side quests which will also assits us in future in terms of debugging I Completed printbootinfo function in x86_machdep.c 
 [commit 1](https://github.com/DiviyamPathak/src/commit/57d369ee87d474cda07a8028aebfc17e983b6f93)
+
 [commit 2](https://github.com/DiviyamPathak/src/commit/4520742affea86ff4d75aeeba979df9b84e2ff40)
+
 [commit 3](https://github.com/DiviyamPathak/src/commit/d7a8e6a672ecee51e9aab6c88620c16e7ab24eba)
+
 This piece of code was immensely knowledage and important for me as a developer. it has many revisions based on reviews from my mentor,this taught me importance of clean code, readability and low level programming concepts.     
 ### Documentation 
 Here is Documentation for all functions in kern_subr.c 
