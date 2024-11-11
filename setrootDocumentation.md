@@ -16,14 +16,18 @@ flowchart TD
     H -->|No| J  
       
     I --> J{Root Device Loop}  
-    J -->|RB_ASKNAME set| K[setroot_ask]  
+    J -->|RB_ASKNAME set| K[setroot_ask]
+    K --> |root_device==NULL| J  
     J -->|RB_ASKNAME not set| L[setroot_root]  
-      
+    L --> N[Sleep 1 sec]  
     L -->|root_device == NULL| M{Wait timeout?}  
-    M -->|No| N[Sleep 1 sec]  
+    %%M -->|No| N[Sleep 1 sec]
+    N --> M
+    M -->|No| J  
     M -->|Yes| I
-    N --> L  
-    
+    %%N --> L  
+    %%setroot_root -> sleep 1 sec -> if no timeout -> root device loop else -> set rb_askname
+%%[Tuesday, November 5, 2024] [11:37:43 PM IST] <good>	and setroot_ask if root_device == NULL -> root device loop
       
     K --> P[Configure root_device]  
     L -->|root_device found| P  
